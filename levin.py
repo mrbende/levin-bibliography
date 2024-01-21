@@ -45,7 +45,7 @@ class LevinBibtex:
         ### CONSTRUCT URL
         api_url = f"https://api.unpaywall.org/v2/{doi}?email={self.email}"
 
-        ### REQUEST SCIHUB API
+        ### REQUEST UNPAYWALL API
         response = requests.get(doi)
         if response.status_code == 200:
             data = response.json()
