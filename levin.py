@@ -79,32 +79,6 @@ class LevinBibtex:
             return "NA"
         
         return pdf_out_name, pdf_url
-
-    def try_scihub_download(self,
-                            doi,
-                            title):
-        ### CONSTRUCT URL
-        api_url = f"http://sci-hub.se/{doi}"
-
-        ### REQUEST SCIHUB API
-        response = requests.get(download_url)
-        if response.status_code == 200:
-            pdf_content = response.content
-
-            ### DOWNLOAD THE PDF
-            pdf_out_name = title.lower()
-            pdf_out_name = pdf_out_name.replace(' ', '_')
-            pdf_out_name = re.sub(r'[^a-z0-9_]', '', pdf_out_name)
-            pdf_out_name += ".pdf"
-            with open(f"{self.pdf_write_dir}{pdf_out_name}", "wb") as pdf_file:
-                pdf_file.write(pdf_content)
-            
-        ### HANDLE FAILURE
-        else:
-            print(f"Failed to download paper with DOI from Scihub: {doi}. Error code: {response.status_code}")
-            pdf_out_name = "NA"
-            
-        return pdf_out_name, api_url
     
     #######################
     ### ENDNOTE LIBRARY ###
